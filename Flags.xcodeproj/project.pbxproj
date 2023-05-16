@@ -13,6 +13,7 @@
 		CA42752D2A0FE45C00411E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA42752B2A0FE45C00411E65 /* Main.storyboard */; };
 		CA42752F2A0FE45F00411E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA42752E2A0FE45F00411E65 /* Assets.xcassets */; };
 		CA4275322A0FE45F00411E65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4275302A0FE45F00411E65 /* LaunchScreen.storyboard */; };
+		CAC438C32A142D22002E7A48 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC438C22A142D22002E7A48 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CA42752E2A0FE45F00411E65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA4275312A0FE45F00411E65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA4275332A0FE45F00411E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAC438C22A142D22002E7A48 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,48 @@
 		CA4275242A0FE45C00411E65 /* Flags */ = {
 			isa = PBXGroup;
 			children = (
-				CA4275252A0FE45C00411E65 /* AppDelegate.swift */,
-				CA4275272A0FE45C00411E65 /* SceneDelegate.swift */,
-				CA4275292A0FE45C00411E65 /* ViewController.swift */,
-				CA42752B2A0FE45C00411E65 /* Main.storyboard */,
-				CA42752E2A0FE45F00411E65 /* Assets.xcassets */,
-				CA4275302A0FE45F00411E65 /* LaunchScreen.storyboard */,
+				CAC438C12A142D04002E7A48 /* MVC */,
+				CAC438C02A142CD1002E7A48 /* InterfaceBuilder */,
+				CAC438BE2A142C82002E7A48 /* Service */,
+				CAC438BF2A142CAE002E7A48 /* ViewControllers */,
 				CA4275332A0FE45F00411E65 /* Info.plist */,
 			);
 			path = Flags;
+			sourceTree = "<group>";
+		};
+		CAC438BE2A142C82002E7A48 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CA42752E2A0FE45F00411E65 /* Assets.xcassets */,
+				CA4275252A0FE45C00411E65 /* AppDelegate.swift */,
+				CA4275272A0FE45C00411E65 /* SceneDelegate.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CAC438BF2A142CAE002E7A48 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA4275292A0FE45C00411E65 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CAC438C02A142CD1002E7A48 /* InterfaceBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				CA42752B2A0FE45C00411E65 /* Main.storyboard */,
+				CA4275302A0FE45F00411E65 /* LaunchScreen.storyboard */,
+			);
+			path = InterfaceBuilder;
+			sourceTree = "<group>";
+		};
+		CAC438C12A142D04002E7A48 /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				CAC438C22A142D22002E7A48 /* Model.swift */,
+			);
+			path = MVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +176,7 @@
 				CA42752A2A0FE45C00411E65 /* ViewController.swift in Sources */,
 				CA4275262A0FE45C00411E65 /* AppDelegate.swift in Sources */,
 				CA4275282A0FE45C00411E65 /* SceneDelegate.swift in Sources */,
+				CAC438C32A142D22002E7A48 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
