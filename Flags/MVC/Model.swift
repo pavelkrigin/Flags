@@ -14,7 +14,7 @@ struct Country {
     let options: [String]
 }
 
-class QuizManager {
+final class QuizManager {
     let countries: [Country] = [
         Country(name: "Austria", flagImageName: "flag_of_Austria", correctAnswer: "Austria", options: ["Germany", "Austria", "Italy"]),
         // Другие страны...
