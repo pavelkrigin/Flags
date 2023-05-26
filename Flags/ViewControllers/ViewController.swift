@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
 //    var view = UILabel()
 //    view.frame = CGRect(x: 0, y: 0, width: 375, height: 812)
