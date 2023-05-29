@@ -7,75 +7,74 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
-
-//    var view = UILabel()
-//    view.frame = CGRect(x: 0, y: 0, width: 375, height: 812)
-//    view.backgroundColor = .white
-//
-//    view.layer.backgroundColor = UIColor(red: 0.983, green: 0.983, blue: 0.983, alpha: 1).cgColor
+class ViewController: UIViewController {
     
+    @IBOutlet weak var flagImageView: UIImageView!
+    @IBOutlet weak var answer1Button: UIButton!
+    @IBOutlet weak var answer2Button: UIButton!
+    @IBOutlet weak var answer3Button: UIButton!
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    let correctAnswer = "Austria"
+    var secondsLeft = 300 // 5 минут * 60 секунд
+    
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        startTimer()
+        showRandomFlag()
+        setupAnswers()
     }
-
-
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            self?.secondsLeft -= 1
+            if self?.secondsLeft == 0 {
+                self?.timer?.invalidate()
+                self?.showAlert(title: "Time's up!", message: "You ran out of time.")
+            } else {
+                self?.timerLabel.text = self?.timeString(from: self!.secondsLeft)
+            }
+        }
+    }
+    
+    func timeString(from seconds: Int) -> String {
+        let minutes = (seconds / 60) % 60
+        let seconds = seconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+    func showRandomFlag() {
+        let randomFlag = "FlagOf\(["Austria", "Germany", "Italy"].randomElement()!)"
+        flagImageView.image = UIImage(named: randomFlag)
+    }
+    
+    func setupAnswers() {
+        let answers = ["Austria", "Germany", "Italy"].shuffled()
+        answer1Button.setTitle(answers[0], for: .normal)
+        answer2Button.setTitle(answers[1], for: .normal)
+        answer3Button.setTitle(answers[2], for: .normal)
+    }
+    
+    @IBAction func answerButtonPressed(_ sender: UIButton) {
+        timer?.invalidate()
+        let selectedAnswer = sender.currentTitle!
+        if selectedAnswer == correctAnswer {
+            showAlert(title: "Correct!", message: "You got it right.")
+        } else {
+            showAlert(title: "Wrong!", message: "That's not the correct answer.")
+        }
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.secondsLeft = 300
+            self.startTimer()
+            self.showRandomFlag()
+            self.setupAnswers()
+        }))
+        present(alert, animated: true, completion: nil)
+    }
 }
-
-//import UIKit
-//
-//class ViewController: UIViewController {
-//
-//    @IBOutlet weak var questionLabel: UILabel!
-//    @IBOutlet weak var answer1Button: UIButton!
-//    @IBOutlet weak var answer2Button: UIButton!
-//    @IBOutlet weak var answer3Button: UIButton!
-//
-//    var questions: [String] = ["Какой год был основан Apple?", "Как называется операционная система Apple для мобильных устройств?", "Как называется язык программирования, используемый для создания приложений под iOS?"]
-//    var answers: [[String]] = [["1976", "1984", "1996"], ["iOS", "macOS", "watchOS"], ["Swift", "Objective-C", "Java"]]
-//    var correctAnswerIndex: Int = 0
-//    var currentQuestionIndex: Int = 0
-//    var score: Int = 0
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        showQuestion()
-//    }
-//
-//    @IBAction func answerButtonTapped(_ sender: UIButton) {
-//        if sender.tag == correctAnswerIndex {
-//            score += 1
-//        }
-//        currentQuestionIndex += 1
-//        if currentQuestionIndex >= questions.count {
-//            showResult()
-//        } else {
-//            showQuestion()
-//        }
-//    }
-//
-//    func showQuestion() {
-//        let question = questions[currentQuestionIndex]
-//        let questionNumber = currentQuestionIndex + 1
-//        questionLabel.text = "Вопрос \(questionNumber): \(question)"
-//        let currentAnswers = answers[currentQuestionIndex]
-//        answer1Button.setTitle(currentAnswers[0], for: .normal)
-//        answer2Button.setTitle(currentAnswers[1], for: .normal)
-//        answer3Button.setTitle(currentAnswers[2], for: .normal)
-//        correctAnswerIndex = Int.random(in: 0..<currentAnswers.count)
-//    }
-//
-//    func showResult() {
-//        let alert = UIAlertController(title: "Результат", message: "Вы ответили правильно на \(score) из \(questions.count) вопросов.", preferredStyle: .alert)
-//        let action = UIAlertAction(title: "OK", style: .default) { (_) in
-//            self.currentQuestionIndex = 0
-//            self.score = 0
-//            self.showQuestion()
-//        }
-//        alert.addAction(action)
-//        present(alert, animated: true, completion: nil)
-//    }
-//
-//}
